@@ -1,0 +1,14 @@
+Para calibrar la profundidad debe de disponer de dos cámaras, muy recomendable que sea el mismo modelo.
+Primero configure los parámetros que aparece en el confi.csv de la carpeta Depth.
+A continuPara calibrar la profundidad debe de disponer de dos cámaras, muy recomendable que sea el mismo modelo.
+Primero configure los parámetros que aparece en el confi.csv de la carpeta Depth.
+A continuación desde la interfaz gráfica inserte el número de cámara, y asigne la camara uno a la que se encuentre a su izquierda y el valor dos a la otra.
+Hecho esto coja una imagen de un tablero de ajedrez y muevalo por la pantalla sacando fotos.
+Cuando termine este proceso ya se habrá calibrado la profundidad.ación desde la interfaz gráfica inserte el número de cámara, y asigne la camara uno a la que se encuentre a su izquierda y el valor dos a la otra.
+Hecho esto coja una imagen de un tablero de ajedrez de 9x6 y muevalo por la pantalla sacando capturas como se le indica.
+Cuando termine este proceso ya se habrá calibrado la profundidad.
+
+frame_rate    #Camera frame rate (maximum at 120 fps)
+B             #Distance between the cameras [cm]
+f             #Camera lense's focal length [mm]
+alpha         #Camera field of view in the horisontal plane [degrees]
