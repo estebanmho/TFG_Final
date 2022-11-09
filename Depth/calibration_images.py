@@ -1,4 +1,6 @@
 import cv2
+import tkinter.messagebox
+
 
 class CalibrationImages:
 
@@ -9,6 +11,8 @@ class CalibrationImages:
         self.num = 0
 
     def start_calibration(self):
+        tkinter.messagebox.showinfo("Instructions", "Press s to take a photo, q to quit")
+
         while self.cap.isOpened():
 
             succes1, img = self.cap.read()
@@ -17,13 +21,17 @@ class CalibrationImages:
 
             k = cv2.waitKey(5)
 
-            if k == 27:
-                break
-            elif k == ord('s'): # wait for 's' key to save and exit
+
+            if k == ord('s'): # wait for 's' key to save and exit
                 cv2.imwrite('./images/stereoLeft/imageL' + str(self.num) + '.png', img)
                 cv2.imwrite('./images/stereoRight/imageR' + str(self.num) + '.png', img2)
                 print("images saved!")
                 self.num += 1
 
+            elif k == ord('q'):
+                cv2.destroyAllWindows()
+                break
+
             cv2.imshow('Img 1',img)
             cv2.imshow('Img 2',img2)
+

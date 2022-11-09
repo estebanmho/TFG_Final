@@ -3,6 +3,7 @@ import tkinter
 import sys
 sys.path.insert(0,"..")
 from Depth.calibration_images import *
+from Depth.stereo_calibration import *
 
 camera_one_value = 0
 
@@ -22,9 +23,11 @@ def start_program():
 
 def calibrate():
     window.withdraw()
-    var_cal = CalibrationImages(camera_one.get(), camera_two.get())
+    var_cal = CalibrationImages(int(camera_one.get()), int(camera_two.get()))
     var_cal.start_calibration()
-    os.system("python ../Depth/calibration.py")
+    stereo_calibrate()
+    tkinter.messagebox.showinfo("Instructions", "The cameras has been calibrated")
+
     window.deiconify()
 
 
