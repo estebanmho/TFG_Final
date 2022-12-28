@@ -1,7 +1,5 @@
 import os
 import tkinter
-import sys
-sys.path.insert(0,"..")
 from Depth.calibration_images import *
 from Depth.stereo_calibration import *
 
