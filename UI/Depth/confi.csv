@@ -1,4 +1,5 @@
-frame_rate,120
+depth_param,value
+frame_rate,60
 B,9
 f,8
 alpha,56.6
