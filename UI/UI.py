@@ -2,6 +2,7 @@ import os
 import tkinter
 from Depth.calibration_images import *
 from Depth.stereo_calibration import *
+from Prediction.PredictiveClass import *
 
 camera_one_value = 0
 
@@ -15,8 +16,12 @@ def hide_camera_two():
 
 
 def start_program():
-
-    return
+    window.withdraw()
+    execution = PredictiveClass(int(camera_one.get()))
+    if checked_state.get() == 1:
+        execution.include_depth(int(camera_two.get()))
+    execution.main_function()
+    window.destroy()
 
 
 def calibrate():

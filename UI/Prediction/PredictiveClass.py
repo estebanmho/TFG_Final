@@ -8,10 +8,10 @@ import numpy as np
 import pickle
 from keras.utils import pad_sequences
 
-sys.path.append("../Depth")
-from StereoVisionClass import Stereo_Vision
-sys.path.append("../Controller")
-from ControllerClass import ActionController
+#sys.path.append("../Depth")
+from Depth.StereoVisionClass import Stereo_Vision
+#sys.path.append("../Controller")
+from Controller.ControllerClass import ActionController
 sys.path.append(".")
 
 
@@ -20,15 +20,15 @@ class PredictiveClass (object):
     ######## Configuration functions: constructor and Depth ########
     def __init__(self, camera):
         self.in_text_tokenizer = ""
-        with open('./models&tokenizer/in_tokenizer.pickle', 'rb') as handle:
+        with open('./Prediction/models&tokenizer/in_tokenizer.pickle', 'rb') as handle:
             self.in_text_tokenizer = pickle.load(handle)
 
         self.out_text_tokenizer = ''
-        with open('./models&tokenizer/out_tokenizer.pickle', 'rb') as handle:
+        with open('./Prediction/models&tokenizer/out_tokenizer.pickle', 'rb') as handle:
             self.out_text_tokenizer = pickle.load(handle)
 
         self.max_in_len = 0
-        with open('./models&tokenizer/max_length.json') as json_file:
+        with open('./Prediction/models&tokenizer/max_length.json') as json_file:
             data = json.load(json_file)
             self.max_in_len = data["in_max_length"]
 
@@ -39,9 +39,9 @@ class PredictiveClass (object):
         self.previous_output = ""
         self.cap = cv2.VideoCapture(camera)
         self.detector = HandDetector(detectionCon=0.8, maxHands=2)
-        self.model_identify_symb = tf.keras.models.load_model('./models&tokenizer/simb_valido.h5')
-        self.model_valid_symb = tf.keras.models.load_model('./models&tokenizer/comprobar_simb.h5')
-        self.model_sequencies = tf.keras.models.load_model('./models&tokenizer/detector_secuencias.h5')
+        self.model_identify_symb = tf.keras.models.load_model('./Prediction/models&tokenizer/simb_valido.h5')
+        self.model_valid_symb = tf.keras.models.load_model('./Prediction/models&tokenizer/comprobar_simb.h5')
+        self.model_sequences = tf.keras.models.load_model('./Prediction/models&tokenizer/detector_secuencias.h5')
         self.previous_output = ""
         self.coord_current = 0
         self.coord_previous = 0
@@ -91,7 +91,7 @@ class PredictiveClass (object):
         in_text_tokenized_p = self.in_text_tokenizer.texts_to_sequences([input_LSTM])
         in_pad_sentence_p = pad_sequences(in_text_tokenized_p, maxlen=self.max_in_len, padding="post")
 
-        output_LSTM = self.logits_to_sentence(self.model_sequencies.predict(in_pad_sentence_p[0:0 + 1])[0],
+        output_LSTM = self.logits_to_sentence(self.model_sequences.predict(in_pad_sentence_p[0:0 + 1])[0],
                                               self.out_text_tokenizer)
         output_LSTM = output_LSTM.split(' <empty>')[0]
         return output_LSTM.split(' ')

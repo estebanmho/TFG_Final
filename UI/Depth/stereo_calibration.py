@@ -26,8 +26,8 @@ def stereo_calibrate():
     imgpointsR = [] # 2d points in image plane.
 
 
-    imagesLeft = glob.glob('images/stereoLeft/*.png')
-    imagesRight = glob.glob('images/stereoRight/*.png')
+    imagesLeft = glob.glob('./Depth/images/stereoLeft/*.png')
+    imagesRight = glob.glob('./Depth/images/stereoRight/*.png')
 
     for imgLeft, imgRight in zip(imagesLeft, imagesRight):
 
@@ -100,7 +100,7 @@ def stereo_calibrate():
     stereoMapR = cv.initUndistortRectifyMap(newCameraMatrixR, distR, rectR, projMatrixR, grayR.shape[::-1], cv.CV_16SC2)
 
     print("Saving parameters!")
-    cv_file = cv.FileStorage('stereoMap.xml', cv.FILE_STORAGE_WRITE)
+    cv_file = cv.FileStorage('./Depth/stereoMap.xml', cv.FILE_STORAGE_WRITE)
 
     cv_file.write('stereoMapL_x',stereoMapL[0])
     cv_file.write('stereoMapL_y',stereoMapL[1])

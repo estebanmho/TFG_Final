@@ -2,9 +2,9 @@ import cv2
 from cvzone.HandTrackingModule import HandDetector
 import pandas as pd
 # Function for frame calibration
-import calibration as calib
+import Depth.calibration as calib
 # Function for stereo vision and depth estimation
-import triangulation as tri
+import Depth.triangulation as tri
 # Mediapipe for face detection
 import mediapipe as mp
 
@@ -17,7 +17,7 @@ class Stereo_Vision (object):
         self.mp_draw = mp.solutions.drawing_utils #Ver que hace esto
         self.cap_left = cv2.VideoCapture(camera_left)
         #Leer del archivo
-        confi_params = pd.read_csv('./confi.csv')
+        confi_params = pd.read_csv('./Depth/confi.csv')
         self.frame_rate = int(confi_params[confi_params['depth_param'] == 'frame_rate'].value) # Camera frame rate (maximum at 120 fps)
         self.B = float(confi_params[confi_params['depth_param'] == 'B'].value) # Distance between the cameras [cm]
         self.f = float(confi_params[confi_params['depth_param'] == 'f'].value) # Camera lense's focal length [mm]
