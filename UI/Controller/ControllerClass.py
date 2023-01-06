@@ -3,7 +3,7 @@ import mouse
 import pyautogui
 
 
-class Controlador (object):
+class ActionController (object):
 
 
     '''def __init__(self):

@@ -18,7 +18,6 @@ class Stereo_Vision (object):
         self.cap_left = cv2.VideoCapture(camera_left)
         #Leer del archivo
         confi_params = pd.read_csv('./confi.csv')
-        print(confi_params)
         self.frame_rate = int(confi_params[confi_params['depth_param'] == 'frame_rate'].value) # Camera frame rate (maximum at 120 fps)
         self.B = float(confi_params[confi_params['depth_param'] == 'B'].value) # Distance between the cameras [cm]
         self.f = float(confi_params[confi_params['depth_param'] == 'f'].value) # Camera lense's focal length [mm]
