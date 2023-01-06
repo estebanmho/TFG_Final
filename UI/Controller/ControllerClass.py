@@ -19,18 +19,18 @@ class ActionController (object):
         coord_x = int(coord_current[0]) - int(coord_previous[0])
         if abs(coord_x) < 20:
             coord_x = 0
-        elif abs(coord_x) > 120:
-            coord_x = 120
+        elif abs(coord_x) > 170:
+            coord_x = 170
         coord_y = int(coord_current[1]) - int(coord_previous[1])
         if abs(coord_y) < 20:
             coord_y = 0
-        elif abs(coord_y) > 120:
-            coord_y = 120
+        elif abs(coord_y) > 170:
+            coord_y = 170
         if coord_y == 0 and coord_x == 0:
             return
         '''coord = numpy.array([coord_x, coord_y])
         normalized_v = coord / np.sqrt(np.sum(coord ** 2))'''
-        mouse.move(-coord_x*1.5, coord_y*1.5, absolute=False, duration=0.1)
+        mouse.move(-coord_x*2, coord_y*2, absolute=False, duration=0.1)
 
     def wheel(self,  coord_current, coord_previous):
         if abs(coord_previous[1] - coord_current[1]) > 20:
