@@ -2,10 +2,14 @@ import json
 import time
 import cv2
 import sys
+
+import win32con
+import win32gui
 from cvzone.HandTrackingModule import HandDetector
 import tensorflow as tf
 import numpy as np
 import pickle
+from skimage import transform
 from keras.utils import pad_sequences
 
 #sys.path.append("../Depth")
@@ -130,6 +134,14 @@ class PredictiveClass (object):
             self.controller.take_action(action_number=int(actual_task),
                                         coord=self.coord_current, coord_previous=self.coord_previous)
 
+    def show_camera_top(self, img):
+        img = transform.resize(img, output_shape=(int(len(img) / 2), int(len(img[0]) / 2)))
+        cv2.imshow("Camera", img)
+        # cv2.resizeWindow("Camera", int(len(img[0])/2), int(len(img)/2))
+        hWnd = win32gui.FindWindow(None, 'Camera')
+        win32gui.SetWindowPos(hWnd, win32con.HWND_TOPMOST, 0, 0, 0, 0,
+                              win32con.SWP_SHOWWINDOW | win32con.SWP_NOSIZE | win32con.SWP_NOMOVE)
+
     ######## Main function ########
     def main_function(self):
         while True:
@@ -147,7 +159,7 @@ class PredictiveClass (object):
                         predicted_symbol = self.model_identify_symb.predict(np.array(self.dictDist), verbose=0)
                         predicted_symbol = self.output_correction(np.argmax(predicted_symbol, axis=1))
                         print(predicted_symbol)
-                        time.sleep(0.01)
+                        time.sleep(0.003)
                         self.actual_sequence.append(str(predicted_symbol[0]))
 
                         if len(self.actual_sequence) == 10:
@@ -162,7 +174,7 @@ class PredictiveClass (object):
                                 self.controller.take_action(6, self.coord_current, self.coord_previous)
                             self.actual_sequence.pop(0)
                 self.coord_previous = self.coord_current
-            cv2.imshow("Image", img)
+            self.show_camera_top(img)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
