@@ -83,7 +83,7 @@ def stereo_calibrate():
     # Here we fix the intrinsic camara matrixes so that only Rot, Trns, Emat and Fmat are calculated.
     # Hence intrinsic parameters are the same
 
-    criteria_stereo= (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+    criteria_stereo = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
     # This step is performed to transformation between the two cameras and calculate Essential and Fundamenatl matrix
     retStereo, newCameraMatrixL, distL, newCameraMatrixR, distR, rot, trans, essentialMatrix, fundamentalMatrix = cv.stereoCalibrate(objpoints, imgpointsL, imgpointsR, newCameraMatrixL, distL, newCameraMatrixR, distR, grayL.shape[::-1], criteria_stereo, flags)
