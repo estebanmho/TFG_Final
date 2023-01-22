@@ -48,6 +48,7 @@ class PredictiveClass (object):
         self.model_sequences = tf.keras.models.load_model('./Prediction/models&tokenizer/detector_secuencias.h5')
         self.previous_output = ""
         self.coord_current = 0
+        self.dist_tracking = 0
         self.coord_previous = 0
         self.depth_activated = False
         self.controller = ActionController()
@@ -113,7 +114,6 @@ class PredictiveClass (object):
             if len(list_out) > 2:  # cierres de acciones
                 close = list_out[-2]
                 if close in ["1", "7"]:
-                    print("cierre")  # rehacer cierre
                     self.tracking_move = False
                     self.tracking_scroll = False
             if len(list_out) > 3:  # cierres de acciones
@@ -126,13 +126,21 @@ class PredictiveClass (object):
             actual_task = list_out[-1]
             if actual_task in ["1", "7"]:  # son cierres
                 actual_task = list_out[-2]  # inicio seguimiento
+                self.dist_tracking = 0
                 if actual_task == "0":
                     self.tracking_move = True
                 else:
                     self.tracking_scroll = True
+
             print(f'{actual_task}actual_task')
             self.controller.take_action(action_number=int(actual_task),
                                         coord=self.coord_current, coord_previous=self.coord_previous)
+        elif list_out[-1] not in ["1", "7"]: #Problematica solucionada de continuar tracking en caso 0 0 0 0 2 1 3 4 5 2, pues antes había problemas al no cambiar de accion se movía igual
+            if self.dist_tracking >= 3:
+                self.tracking_move = False
+                self.tracking_scroll = False
+            else:
+                self.dist_tracking += 1
 
     def show_camera_top(self, img):
         img = transform.resize(img, output_shape=(int(len(img) / 2), int(len(img[0]) / 2)))
