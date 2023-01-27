@@ -1,6 +1,7 @@
 Para calibrar la profundidad debe de disponer de dos cámaras, muy recomendable que sea el mismo modelo.
-Primero configure los parámetros que aparece en el confi.csv de la carpeta Depth.
-A continuación desde la interfaz gráfica inserte el número de cámara, y asigne la camara principal a la que se encuentre a su derecha, el valor de la secundaria a la que se encuentra su izquierda-
+Primero, configure los parámetros que aparece en el confi.csv de la carpeta Depth.
+Después, configure la distancia mínima y máxima en el archivo confiMinMax.csv en el directorio Prediction.
+A continuación, desde la interfaz gráfica inserte el número de cámara, y asigne la camara principal a la que se encuentre a su derecha, el valor de la secundaria a la que se encuentra su izquierda-
 Hecho esto, coja una imagen de un tablero de ajedrez de 9x6 y muevalo por la pantalla sacando capturas como se le indica.
 Cuando termine este proceso ya se habrá calibrado la profundidad.
 Si quiere volver a calibrar elimine las fotos en ./UI/Depth/images en ambas carpetas

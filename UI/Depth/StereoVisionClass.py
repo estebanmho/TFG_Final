@@ -31,7 +31,7 @@ class Stereo_Vision (object):
 
         ################## CALIBRATION #########################################################
 
-        frame_right, frame_left = calib.undistorted(frame_right, frame_left)
+        frame_right, frame_left = calib.undistortRectifyq(frame_right, frame_left)
 
         ########################################################################################
 

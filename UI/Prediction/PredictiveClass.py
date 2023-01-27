@@ -2,7 +2,7 @@ import json
 import time
 import cv2
 import sys
-
+import pandas as pd
 import win32con
 import win32gui
 from cvzone.HandTrackingModule import HandDetector
@@ -55,8 +55,12 @@ class PredictiveClass (object):
         self.dictDist = {}
 
     def include_depth(self, left_cam_num):
-        self.stereo_vision = Stereo_Vision()
+        self.stereo_vision = Stereo_Vision(left_cam_num)
         self.depth_activated = True
+        confi_params = pd.read_csv('./Prediction/confiMinMax.csv')
+        self.max = int(confi_params[confi_params['depth_param'] == 'max'].value)
+        self.min = int(confi_params[confi_params['depth_param'] == 'min'].value)
+
 
     ######## Auxiliary functions ########
     def output_correction(self, number):
@@ -160,7 +164,7 @@ class PredictiveClass (object):
                 if self.depth_activated:  # Calculate distance if activated
                     hand_depth = self.stereo_vision.calculate_distances(hand_right=hands, frame_right=img,
                                                                         ret_right=success)
-                if not self.depth_activated or hand_depth > 15: #If depth not activated continue and if depth over 15 also
+                if not self.depth_activated or (hand_depth > self.min and hand_depth < self.max): #If depth not activated continue and if depth over 15 also
                     valid_symbol = self.predict_symbol_valid(hands)
 
                     if valid_symbol == 1:
