@@ -1,5 +1,5 @@
-<em> # TFG: Esteban Martínez Hoces </em>
-<em> # Hundsor </em>
+# TFG: Esteban Martínez Hoces
+# Hundsor
 
 ## Table of Contents
 1. [Descripcion](#desc)
