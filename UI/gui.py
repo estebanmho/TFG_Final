@@ -27,12 +27,12 @@ stereo_cam = False
 
 def start_program():
     window.withdraw()
+    tkinter.messagebox.showinfo("Instructions", "Press q to stop tracking.")
     try:
         execution = PredictiveClass(int(camera_one.get()))
         if stereo_cam:
             execution.include_depth(int(camera_two.get()))
         execution.main_function()
-        tkinter.messagebox.showinfo("Instructions", "Press q to stop tracking.")
         window.destroy()
     except Exception as e:
         tkinter.messagebox.showinfo("Instructions", "Camera not detected or not compatible.")
@@ -122,7 +122,7 @@ canvas.create_text(
     66.0,
     131.25,
     anchor="nw",
-    text="Esta aplicación te permite controlar tu ordenador a través del\nuso de una o varias cámaras. Podrás llevar a cabo acciones\nque realizarías con un teclado o un ratón, a través de gestos.\nGracias a su entrenamiento a través de redes neuronales y\nmedición de la profundidad, el sistema resulta altamente\nefectivo, mejorando la experiencia de usuario para el control\ndel ordenador.",
+    text="Esta aplicación te permite controlar tu ordenador a través del\nuso de una o varias cámaras. Podrás llevar a cabo acciones\nque realizarías con un teclado o un ratón, a través de gestos.\n\nGracias a su entrenamiento a través de redes neuronales y\nmedición de la profundidad, el sistema resulta altamente\nefectivo, mejorando la experiencia de usuario para el control\ndel ordenador.",
     fill="#FFFFFF",
     font=("RobotoRoman Light", 15 * -1)
 )
