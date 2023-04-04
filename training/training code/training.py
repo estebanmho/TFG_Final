@@ -16,7 +16,7 @@ class PeriodicPrint(tf.keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs=None):  # es llamado cada vez que termina un epoch
         if (epoch + 1) % self.trace == 0:
-            print(f"epoch: {epoch + 1}; loss: {logs['loss']:.5f}; accuracy: {logs['accuracy']:.5f}")
+            print(f"epoch: {epoch + 1}; loss: {logs['loss']:.5f}; accuracy: {logs['accuracy']:.5f}; MAE: {logs['mean_absolute_error']:.5f}; MSE: {logs['mean_squared_error']:.5f}")
 
 
 X = np.loadtxt('../data/shuffle_simb_valido.csv', delimiter=",", dtype='float64', usecols=range(1,7), skiprows=1)
