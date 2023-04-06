@@ -171,7 +171,7 @@ class PredictiveClass (object):
                         predicted_symbol = self.model_identify_symb.predict(np.array(self.dictDist), verbose=0)
                         predicted_symbol = self.output_correction(np.argmax(predicted_symbol, axis=1))
                         print(predicted_symbol)
-                        time.sleep(0.003)
+                        time.sleep(0.001)
                         self.actual_sequence.append(str(predicted_symbol[0]))
 
                         if len(self.actual_sequence) == 10:
