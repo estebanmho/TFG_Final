@@ -5,7 +5,7 @@ import time
 
 cap = cv2.VideoCapture(1)
 detector = HandDetector(detectionCon=0.8, maxHands=1) #numero max de manos posiblemente 1 para que no se confunda
-csv_file = "./data/simb_val_nieves_5.csv"
+csv_file = "../data/simb_test_mar_5.csv"
 i = 0
 try:
     with open(csv_file, 'a') as csvfile:

@@ -19,8 +19,8 @@ class PeriodicPrint(tf.keras.callbacks.Callback):
             print(f"epoch: {epoch + 1}; loss: {logs['loss']:.5f}; accuracy: {logs['accuracy']:.5f}")
 
 
-X = np.loadtxt('../data/simb_valido_test_santi.csv', delimiter=",", dtype='float64', usecols=range(0,6), skiprows=1)
-L = np.loadtxt('../data/simb_valido_test_santi.csv', delimiter=",", dtype='int', usecols=[6], skiprows=1)
+X = np.loadtxt('../data/simb_text_mar.csv', delimiter=",", dtype='float64', usecols=range(0, 6), skiprows=1)
+L = np.loadtxt('../data/simb_text_mar.csv', delimiter=",", dtype='int', usecols=[6], skiprows=1)
 
 d = np.array(L)
 X = np.array(X)
