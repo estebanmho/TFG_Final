@@ -1,6 +1,5 @@
 import cv2
 from cvzone.HandTrackingModule import HandDetector
-import pandas as pd
 # Function for frame calibration
 import Depth.calibration as calib
 # Function for stereo vision and depth estimation
@@ -31,7 +30,7 @@ class Stereo_Vision (object):
 
         ################## CALIBRATION #########################################################
 
-        frame_right, frame_left = calib.undistortRectifyq(frame_right, frame_left)
+        frame_right, frame_left = calib.undistortRectify(frame_right, frame_left)
 
         ########################################################################################
 

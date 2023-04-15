@@ -30,7 +30,7 @@ class ActionController (object):
             return
         '''coord = numpy.array([coord_x, coord_y])
         normalized_v = coord / np.sqrt(np.sum(coord ** 2))'''
-        mouse.move(-coord_x*2, coord_y*2, absolute=False, duration=0.1)
+        mouse.move(-coord_x*2.1, coord_y*2.1, absolute=False, duration=0.1)
 
     def wheel(self,  coord_current, coord_previous):
         if abs(coord_previous[1] - coord_current[1]) > 20:
