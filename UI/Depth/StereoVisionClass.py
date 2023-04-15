@@ -3,6 +3,7 @@ from cvzone.HandTrackingModule import HandDetector
 # Function for frame calibration
 import Depth.calibration as calib
 # Function for stereo vision and depth estimation
+import pandas as pd
 import Depth.triangulation as tri
 # Mediapipe for face detection
 import mediapipe as mp
