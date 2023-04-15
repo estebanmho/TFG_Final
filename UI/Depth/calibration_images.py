@@ -23,8 +23,8 @@ class CalibrationImages:
 
 
             if k == ord('s'): # wait for 's' key to save and exit
-                cv2.imwrite('./Depth/images/stereoLeft/imageL' + str(self.num) + '.png', img)
-                cv2.imwrite('./Depth/images/stereoRight/imageR' + str(self.num) + '.png', img2)
+                cv2.imwrite('./Depth/images/stereoLeft/imageL' + str(self.num) + '.png', img2)
+                cv2.imwrite('./Depth/images/stereoRight/imageR' + str(self.num) + '.png', img)
                 print("images saved!")
                 self.num += 1
 
