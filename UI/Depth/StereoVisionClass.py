@@ -31,7 +31,7 @@ class Stereo_Vision (object):
 
         ################## CALIBRATION #########################################################
 
-        frame_right, frame_left = calib.undistortRectify(frame_right, frame_left)
+        #frame_right, frame_left = calib.undistortRectify(frame_right, frame_left)
 
         ########################################################################################
 
@@ -43,7 +43,6 @@ class Stereo_Vision (object):
 
             # APPLYING SHAPE RECOGNITION:
             hand_left, frame_left = self.hand_detection_left.findHands(frame_left)
-
             # Hough Transforms can be used aswell or some neural network to do object detection
             if hand_right and hand_left:
             ################## CALCULATING HAND DEPTH #########################################################

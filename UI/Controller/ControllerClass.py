@@ -17,12 +17,12 @@ class ActionController (object):
 
     def move(self, coord_current, coord_previous):
         coord_x = int(coord_current[0]) - int(coord_previous[0])
-        if abs(coord_x) < 20:
+        if abs(coord_x) < 13:
             coord_x = 0
         elif abs(coord_x) > 170:
             coord_x = 170
         coord_y = int(coord_current[1]) - int(coord_previous[1])
-        if abs(coord_y) < 20:
+        if abs(coord_y) < 13:
             coord_y = 0
         elif abs(coord_y) > 170:
             coord_y = 170

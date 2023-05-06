@@ -162,7 +162,7 @@ class PredictiveClass (object):
 
             if hands:
                 if self.depth_activated:  # Calculate distance if activated
-                    hand_depth = self.stereo_vision.calculate_distances(hand_right=hands, frame_right=img,
+                    hand_depth = -1* self.stereo_vision.calculate_distances(hand_right=hands, frame_right=img,
                                                                         ret_right=success)
                     print(hand_depth)
                 if not self.depth_activated or (hand_depth > self.min and hand_depth < self.max): #If depth not activated continue and if depth over 15 also
